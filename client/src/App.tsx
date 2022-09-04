@@ -140,7 +140,7 @@ function App() {
     localConnection.onicecandidate = onicecandidate;
     localConnection.ondatachannel = receiveChannelCallback;
 
-    const socket = io("127.0.0.1:3000");
+    const socket = io("/");
     socket.on("connect", () => {
       socketRef.current = socket;
       setIsConnect(true);
