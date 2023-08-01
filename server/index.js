@@ -20,10 +20,12 @@ app.use(express.static("../client/dist"));
 
 io.on("connection", (socket) => {
   const id = getRandomId();
+  console.log(`进来了:${id}`);
   users.set(id, socket);
   socket.emit("id", { id });
   socket.on("disconnect", () => {
     users.delete(id);
+    console.log(`离开了:${id}`);
   });
   socket.on("offer", (data) => {
     try {
