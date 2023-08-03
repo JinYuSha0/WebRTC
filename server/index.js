@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
@@ -16,7 +17,7 @@ const users = new Map();
 
 const getRandomId = () => Math.random().toString().slice(2, 8);
 
-app.use(express.static("../client/dist"));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 io.on("connection", (socket) => {
   const id = getRandomId();
