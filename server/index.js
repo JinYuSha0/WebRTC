@@ -65,7 +65,6 @@ io.on("connection", (socket) => {
         users.get(to).emit("receiveCandidate", {
           from: id,
           candidate,
-          sdpMLineIndex,
         });
       } else {
         throw new Error("no such user");
