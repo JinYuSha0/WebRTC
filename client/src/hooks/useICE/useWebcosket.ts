@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 import type { Socket } from "socket.io-client";
 import useDataChannel from "./useDataChannel";
 import useEvent from "../useEvent";
+import usePermission from "./usePermission";
 
 enum SocketEvent {
   ID = "id",
@@ -13,6 +14,7 @@ enum SocketEvent {
 
 export default function useWebsocket(onMessage: (event: MessageEvent) => void) {
   const dataChannel = useDataChannel(onMessage);
+  const applyPermission = usePermission();
   const [isConnect, setIsConnect] = useState(false);
   const [code1, setCode1] = useState<String>();
   const [code2, setCode2] = useState<String>();
@@ -22,7 +24,8 @@ export default function useWebsocket(onMessage: (event: MessageEvent) => void) {
     return socketRef.current.emit(args[0], { to: code2, ...args[1] });
   });
   dataChannel.setEmit(emit);
-  const open = useEvent(() => {
+  const open = useEvent(async () => {
+    await applyPermission();
     dataChannel.open();
     if (socketRef.current && socketRef.current.active) return;
     const socket = (socketRef.current = io("/"));
