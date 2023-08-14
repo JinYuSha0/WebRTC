@@ -1,4 +1,5 @@
 import { useEffect, useState, memo } from "react";
+import { QRCodeSVG } from "qrcode.react";
 import useEvent from "./hooks/useEvent";
 import useICE from "./hooks/useICE";
 
@@ -31,7 +32,17 @@ function App() {
     <div className="App">
       <p>WS连接状态: {isConnect ? "已连接" : "未连接"}</p>
       <p>WebRTC: {isChannelOpen ? code2 : "未连接"}</p>
-      <p>用户码: {code1 ?? "-"}</p>
+      <p>Code: {code1 ?? "-"}</p>
+      {code1 && (
+        <QRCodeSVG
+          value={code1}
+          size={128}
+          bgColor={"#ffffff"}
+          fgColor={"#000000"}
+          level={"L"}
+          includeMargin={false}
+        />
+      )}
       {isSendChannelOpen && (
         <div>
           <input

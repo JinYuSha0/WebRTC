@@ -16,8 +16,8 @@ export default function useWebsocket(onMessage: (event: MessageEvent) => void) {
   const dataChannel = useDataChannel(onMessage);
   const applyPermission = usePermission();
   const [isConnect, setIsConnect] = useState(false);
-  const [code1, setCode1] = useState<String>();
-  const [code2, setCode2] = useState<String>();
+  const [code1, setCode1] = useState<string>();
+  const [code2, setCode2] = useState<string>();
   const socketRef = useRef<Socket | null>(null);
   const emit = useEvent((...args: ArgumentTypes<Socket["emit"]>) => {
     if (!socketRef.current || !socketRef.current.active) return;
