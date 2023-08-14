@@ -9,17 +9,8 @@ function App() {
   const onMessage = useEvent((event: MessageEvent) => {
     setReceiveMsg((prev) => [...prev, event.data]);
   });
-  const {
-    isConnect,
-    isChannelOpen,
-    isReceiveChannelOpen,
-    isSendChannelOpen,
-    code1,
-    code2,
-    open,
-    close,
-    send,
-  } = useICE(onMessage);
+  const { isConnect, isChannelOpen, code1, code2, open, close, send } =
+    useICE(onMessage);
   const sendMsg = useEvent(() => {
     send(sendValue);
     setSendValue("");
@@ -43,19 +34,19 @@ function App() {
           includeMargin={false}
         />
       )}
-      {isSendChannelOpen && (
+      {isChannelOpen && (
         <div>
           <input
             placeholder="msg"
             value={sendValue}
             onChange={(e) => setSendValue(e.currentTarget.value)}
           />
-          <button disabled={!isSendChannelOpen} onClick={sendMsg}>
+          <button disabled={!isChannelOpen} onClick={sendMsg}>
             send
           </button>
         </div>
       )}
-      {isReceiveChannelOpen && (
+      {isChannelOpen && (
         <>
           <p>接收中</p>
           {receiveMsg.map((msg, index) => (

@@ -79,8 +79,6 @@ export default function useWebsocket(onMessage: (event: MessageEvent) => void) {
     open,
     close,
 
-    isReceiveChannelOpen: dataChannel.isReceiveChannelOpen,
-    isSendChannelOpen: dataChannel.isSendChannelOpen,
     isChannelOpen: dataChannel.isChannelOpen,
     send: dataChannel.send,
   };
