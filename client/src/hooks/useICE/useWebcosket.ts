@@ -42,7 +42,7 @@ export default function useWebsocket(onMessage: (event: MessageEvent) => void) {
     });
     socket.on(SocketEvent.ReceiveOffer, async (data) => {
       const { from, offer } = data;
-      setCode2((prev) => (prev == null ? from : prev));
+      setCode2((prev) => (prev !== from ? from : prev));
       const localConnection = dataChannel.localConnectionRef.current!;
       await localConnection.setRemoteDescription(offer);
       const answer = await localConnection.createAnswer();
@@ -51,7 +51,7 @@ export default function useWebsocket(onMessage: (event: MessageEvent) => void) {
     });
     socket.on(SocketEvent.ReceiveCandidate, async (data) => {
       const { from, candidate } = data;
-      setCode2((prev) => (prev == null ? from : prev));
+      setCode2((prev) => (prev !== from ? from : prev));
       const localConnection = dataChannel.localConnectionRef.current!;
       await localConnection?.addIceCandidate(candidate);
     });

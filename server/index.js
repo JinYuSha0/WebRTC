@@ -73,6 +73,10 @@ io.on("connection", (socket) => {
       socket.emit("error", error.message);
     }
   });
+  socket.on("exists", (data) => {
+    const { id } = data;
+    socket.emit("exists", users.has(id));
+  });
 });
 
 server.listen(3000, () => {
