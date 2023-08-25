@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package domain;
+
+message Album {
+  bool isVideo = 1;
+  uint32 mediaId = 2;
+  string parent = 3;
+  string name = 4;
+  uint64 modifiedTime = 5;
+  string mime = 6;
+  uint64 fileSize = 8;
+  uint32 duration = 9;
+  uint32 width = 10;
+  uint32 height = 11;
+  int32 rotate = 12;
+  bool hadFillData = 13;
+}
+
+message AlbumList {
+  repeated Album list = 1;
+}
