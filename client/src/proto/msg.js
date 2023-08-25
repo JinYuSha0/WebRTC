@@ -1,22 +1,20 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
-"use strict";
-
-var $protobuf = require("protobufjs/minimal");
+import * as $protobuf from "protobufjs/minimal";
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-$root.domain = (function() {
+export const domain = $root.domain = (() => {
 
     /**
      * Namespace domain.
      * @exports domain
      * @namespace
      */
-    var domain = {};
+    const domain = {};
 
     domain.Album = (function() {
 
@@ -48,7 +46,7 @@ $root.domain = (function() {
          */
         function Album(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -227,9 +225,9 @@ $root.domain = (function() {
         Album.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.Album();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.Album();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
                         message.isVideo = reader.bool();
@@ -364,7 +362,7 @@ $root.domain = (function() {
         Album.fromObject = function fromObject(object) {
             if (object instanceof $root.domain.Album)
                 return object;
-            var message = new $root.domain.Album();
+            let message = new $root.domain.Album();
             if (object.isVideo != null)
                 message.isVideo = Boolean(object.isVideo);
             if (object.mediaId != null)
@@ -418,20 +416,20 @@ $root.domain = (function() {
         Album.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.isVideo = false;
                 object.mediaId = 0;
                 object.parent = "";
                 object.name = "";
                 if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
+                    let long = new $util.Long(0, 0, true);
                     object.modifiedTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.modifiedTime = options.longs === String ? "0" : 0;
                 object.mime = "";
                 if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
+                    let long = new $util.Long(0, 0, true);
                     object.fileSize = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.fileSize = options.longs === String ? "0" : 0;
@@ -523,7 +521,7 @@ $root.domain = (function() {
         function AlbumList(properties) {
             this.list = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -561,7 +559,7 @@ $root.domain = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.list != null && message.list.length)
-                for (var i = 0; i < message.list.length; ++i)
+                for (let i = 0; i < message.list.length; ++i)
                     $root.domain.Album.encode(message.list[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
@@ -593,9 +591,9 @@ $root.domain = (function() {
         AlbumList.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.AlbumList();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.AlbumList();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.list && message.list.length))
@@ -641,8 +639,8 @@ $root.domain = (function() {
             if (message.list != null && message.hasOwnProperty("list")) {
                 if (!Array.isArray(message.list))
                     return "list: array expected";
-                for (var i = 0; i < message.list.length; ++i) {
-                    var error = $root.domain.Album.verify(message.list[i]);
+                for (let i = 0; i < message.list.length; ++i) {
+                    let error = $root.domain.Album.verify(message.list[i]);
                     if (error)
                         return "list." + error;
                 }
@@ -661,12 +659,12 @@ $root.domain = (function() {
         AlbumList.fromObject = function fromObject(object) {
             if (object instanceof $root.domain.AlbumList)
                 return object;
-            var message = new $root.domain.AlbumList();
+            let message = new $root.domain.AlbumList();
             if (object.list) {
                 if (!Array.isArray(object.list))
                     throw TypeError(".domain.AlbumList.list: array expected");
                 message.list = [];
-                for (var i = 0; i < object.list.length; ++i) {
+                for (let i = 0; i < object.list.length; ++i) {
                     if (typeof object.list[i] !== "object")
                         throw TypeError(".domain.AlbumList.list: object expected");
                     message.list[i] = $root.domain.Album.fromObject(object.list[i]);
@@ -687,12 +685,12 @@ $root.domain = (function() {
         AlbumList.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.list = [];
             if (message.list && message.list.length) {
                 object.list = [];
-                for (var j = 0; j < message.list.length; ++j)
+                for (let j = 0; j < message.list.length; ++j)
                     object.list[j] = $root.domain.Album.toObject(message.list[j], options);
             }
             return object;
@@ -730,4 +728,4 @@ $root.domain = (function() {
     return domain;
 })();
 
-module.exports = $root;
+export { $root as default };
