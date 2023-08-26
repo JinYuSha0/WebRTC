@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Socket } from "socket.io-client";
 import useEvent from "../useEvent";
 
@@ -11,7 +11,7 @@ export default function useDataChannel(
 ) {
   const [isChannelOpen, setChannelOpen] = useState(false);
   const localConnectionRef = useRef<RTCPeerConnection | null>(null);
-  const dataChannelsRef = useRef<RTCDataChannel[]>([]);
+  const dataChannelRef = useRef<RTCDataChannel | null>(null);
   const emitRef = useRef<EmitFunc>();
   const setEmit = useEvent((emit: EmitFunc) => (emitRef.current = emit));
   const emit = useEvent((...args: ArgumentTypes<Socket["emit"]>) => {
@@ -41,16 +41,14 @@ export default function useDataChannel(
   const handleReceiveChannelCallback = useEvent((e: RTCDataChannelEvent) => {
     console.log(e.channel.label, e.channel.ordered);
     let channel = e.channel;
-    dataChannelsRef.current.push(channel);
+    dataChannelRef.current = channel;
     channel.onmessage = onMessage.bind(channel);
     channel.onopen = handlDateChannelStatusChange.bind(channel);
     channel.onclose = handlDateChannelStatusChange.bind(channel);
   });
   const send = useEvent((data: string | Blob | ArrayBuffer) => {
     if (!isChannelOpen) throw new Error("Send channel dosent open");
-    let dataChannel = dataChannelsRef.current;
-    // todo
-    dataChannel[0]?.send(data as any);
+    dataChannelRef.current?.send(data as any);
   });
   const open = useEvent(() => {
     let localConnection = localConnectionRef.current;
@@ -63,12 +61,10 @@ export default function useDataChannel(
   });
   const close = useEvent(() => {
     let localConnection = localConnectionRef.current;
-    let dataChannels = dataChannelsRef.current;
-    for (let channel of dataChannels) {
-      channel.close();
-    }
+    let dataChannel = dataChannelRef.current;
+    dataChannel?.close();
     localConnection?.close();
-    dataChannelsRef.current = [];
+    dataChannelRef.current = null;
   });
   return {
     localConnectionRef: localConnectionRef,

@@ -3,6 +3,115 @@ import Long = require("long");
 /** Namespace domain. */
 export namespace domain {
 
+    /** Properties of an AlbumParams. */
+    interface IAlbumParams {
+
+        /** AlbumParams type */
+        type?: (number|null);
+
+        /** AlbumParams page */
+        page?: (number|null);
+
+        /** AlbumParams size */
+        size?: (number|null);
+    }
+
+    /** Represents an AlbumParams. */
+    class AlbumParams implements IAlbumParams {
+
+        /**
+         * Constructs a new AlbumParams.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: domain.IAlbumParams);
+
+        /** AlbumParams type. */
+        public type: number;
+
+        /** AlbumParams page. */
+        public page: number;
+
+        /** AlbumParams size. */
+        public size: number;
+
+        /**
+         * Creates a new AlbumParams instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AlbumParams instance
+         */
+        public static create(properties?: domain.IAlbumParams): domain.AlbumParams;
+
+        /**
+         * Encodes the specified AlbumParams message. Does not implicitly {@link domain.AlbumParams.verify|verify} messages.
+         * @param message AlbumParams message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: domain.IAlbumParams, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AlbumParams message, length delimited. Does not implicitly {@link domain.AlbumParams.verify|verify} messages.
+         * @param message AlbumParams message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: domain.IAlbumParams, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AlbumParams message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AlbumParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): domain.AlbumParams;
+
+        /**
+         * Decodes an AlbumParams message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AlbumParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): domain.AlbumParams;
+
+        /**
+         * Verifies an AlbumParams message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AlbumParams message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AlbumParams
+         */
+        public static fromObject(object: { [k: string]: any }): domain.AlbumParams;
+
+        /**
+         * Creates a plain object from an AlbumParams message. Also converts values to other types if specified.
+         * @param message AlbumParams
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: domain.AlbumParams, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AlbumParams to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AlbumParams
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of an Album. */
     interface IAlbum {
 
@@ -257,6 +366,109 @@ export namespace domain {
 
         /**
          * Gets the default type url for AlbumList
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a StringParams. */
+    interface IStringParams {
+
+        /** StringParams type */
+        type?: (number|null);
+
+        /** StringParams content */
+        content?: (string|null);
+    }
+
+    /** Represents a StringParams. */
+    class StringParams implements IStringParams {
+
+        /**
+         * Constructs a new StringParams.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: domain.IStringParams);
+
+        /** StringParams type. */
+        public type: number;
+
+        /** StringParams content. */
+        public content: string;
+
+        /**
+         * Creates a new StringParams instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns StringParams instance
+         */
+        public static create(properties?: domain.IStringParams): domain.StringParams;
+
+        /**
+         * Encodes the specified StringParams message. Does not implicitly {@link domain.StringParams.verify|verify} messages.
+         * @param message StringParams message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: domain.IStringParams, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified StringParams message, length delimited. Does not implicitly {@link domain.StringParams.verify|verify} messages.
+         * @param message StringParams message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: domain.IStringParams, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a StringParams message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns StringParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): domain.StringParams;
+
+        /**
+         * Decodes a StringParams message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns StringParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): domain.StringParams;
+
+        /**
+         * Verifies a StringParams message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a StringParams message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns StringParams
+         */
+        public static fromObject(object: { [k: string]: any }): domain.StringParams;
+
+        /**
+         * Creates a plain object from a StringParams message. Also converts values to other types if specified.
+         * @param message StringParams
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: domain.StringParams, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this StringParams to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for StringParams
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

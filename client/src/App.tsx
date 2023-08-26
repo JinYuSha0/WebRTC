@@ -1,25 +1,12 @@
 import { useEffect, useState, memo } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { AlbumService } from "./service";
+import { getAlbumListParams, sendStringParams } from "./msg/send";
 import useEvent from "./hooks/useEvent";
 import useICE from "./hooks/useICE";
-import useSWR from "swr";
-
-function arrayBufferToString(buffer: ArrayBuffer) {
-  return new TextDecoder("utf-8").decode(new Uint8Array(buffer));
-}
 
 function App() {
   const [sendValue, setSendValue] = useState("");
   const [receiveMsg, setReceiveMsg] = useState<string[]>([]);
-  const { data: albumList, mutate: fetchAlbumList } = useSWR(
-    { page: 1, size: 12 },
-    AlbumService.getAlbumList,
-    {
-      revalidateOnMount: false,
-      revalidateOnFocus: false,
-    }
-  );
   const onMessage = useEvent(function (
     this: RTCDataChannel,
     event: MessageEvent
@@ -35,16 +22,17 @@ function App() {
   });
   const { isConnect, isChannelOpen, code1, code2, open, close, send } =
     useICE(onMessage);
+  const getAlbumList = useEvent(() => {
+    send(getAlbumListParams(1, 12));
+  });
   const sendMsg = useEvent(() => {
-    send(sendValue);
+    send(sendStringParams(sendValue));
     setSendValue("");
   });
   useEffect(() => {
     open();
-    fetchAlbumList();
     return close;
   }, []);
-  console.log(albumList);
   return (
     <div className="App">
       <p>WS连接状态: {isConnect ? "已连接" : "未连接"}</p>
@@ -69,6 +57,9 @@ function App() {
           />
           <button disabled={!isChannelOpen} onClick={sendMsg}>
             send
+          </button>
+          <button disabled={!isChannelOpen} onClick={getAlbumList}>
+            getAlbumList
           </button>
         </div>
       )}

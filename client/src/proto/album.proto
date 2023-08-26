@@ -2,6 +2,12 @@ syntax = "proto3";
 
 package domain;
 
+message AlbumParams {
+  uint32 type = 1;
+  uint32 page = 2;
+  uint32 size = 3;
+}
+
 message Album {
   bool isVideo = 1;
   uint32 mediaId = 2;

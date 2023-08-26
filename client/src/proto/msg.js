@@ -16,6 +16,256 @@ export const domain = $root.domain = (() => {
      */
     const domain = {};
 
+    domain.AlbumParams = (function() {
+
+        /**
+         * Properties of an AlbumParams.
+         * @memberof domain
+         * @interface IAlbumParams
+         * @property {number|null} [type] AlbumParams type
+         * @property {number|null} [page] AlbumParams page
+         * @property {number|null} [size] AlbumParams size
+         */
+
+        /**
+         * Constructs a new AlbumParams.
+         * @memberof domain
+         * @classdesc Represents an AlbumParams.
+         * @implements IAlbumParams
+         * @constructor
+         * @param {domain.IAlbumParams=} [properties] Properties to set
+         */
+        function AlbumParams(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AlbumParams type.
+         * @member {number} type
+         * @memberof domain.AlbumParams
+         * @instance
+         */
+        AlbumParams.prototype.type = 0;
+
+        /**
+         * AlbumParams page.
+         * @member {number} page
+         * @memberof domain.AlbumParams
+         * @instance
+         */
+        AlbumParams.prototype.page = 0;
+
+        /**
+         * AlbumParams size.
+         * @member {number} size
+         * @memberof domain.AlbumParams
+         * @instance
+         */
+        AlbumParams.prototype.size = 0;
+
+        /**
+         * Creates a new AlbumParams instance using the specified properties.
+         * @function create
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {domain.IAlbumParams=} [properties] Properties to set
+         * @returns {domain.AlbumParams} AlbumParams instance
+         */
+        AlbumParams.create = function create(properties) {
+            return new AlbumParams(properties);
+        };
+
+        /**
+         * Encodes the specified AlbumParams message. Does not implicitly {@link domain.AlbumParams.verify|verify} messages.
+         * @function encode
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {domain.IAlbumParams} message AlbumParams message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AlbumParams.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.type);
+            if (message.page != null && Object.hasOwnProperty.call(message, "page"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.page);
+            if (message.size != null && Object.hasOwnProperty.call(message, "size"))
+                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.size);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AlbumParams message, length delimited. Does not implicitly {@link domain.AlbumParams.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {domain.IAlbumParams} message AlbumParams message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AlbumParams.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AlbumParams message from the specified reader or buffer.
+         * @function decode
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {domain.AlbumParams} AlbumParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AlbumParams.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.AlbumParams();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.type = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.page = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.size = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AlbumParams message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {domain.AlbumParams} AlbumParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AlbumParams.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AlbumParams message.
+         * @function verify
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AlbumParams.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isInteger(message.type))
+                    return "type: integer expected";
+            if (message.page != null && message.hasOwnProperty("page"))
+                if (!$util.isInteger(message.page))
+                    return "page: integer expected";
+            if (message.size != null && message.hasOwnProperty("size"))
+                if (!$util.isInteger(message.size))
+                    return "size: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates an AlbumParams message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {domain.AlbumParams} AlbumParams
+         */
+        AlbumParams.fromObject = function fromObject(object) {
+            if (object instanceof $root.domain.AlbumParams)
+                return object;
+            let message = new $root.domain.AlbumParams();
+            if (object.type != null)
+                message.type = object.type >>> 0;
+            if (object.page != null)
+                message.page = object.page >>> 0;
+            if (object.size != null)
+                message.size = object.size >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AlbumParams message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {domain.AlbumParams} message AlbumParams
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AlbumParams.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.type = 0;
+                object.page = 0;
+                object.size = 0;
+            }
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            if (message.page != null && message.hasOwnProperty("page"))
+                object.page = message.page;
+            if (message.size != null && message.hasOwnProperty("size"))
+                object.size = message.size;
+            return object;
+        };
+
+        /**
+         * Converts this AlbumParams to JSON.
+         * @function toJSON
+         * @memberof domain.AlbumParams
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AlbumParams.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AlbumParams
+         * @function getTypeUrl
+         * @memberof domain.AlbumParams
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AlbumParams.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/domain.AlbumParams";
+        };
+
+        return AlbumParams;
+    })();
+
     domain.Album = (function() {
 
         /**
@@ -723,6 +973,233 @@ export const domain = $root.domain = (() => {
         };
 
         return AlbumList;
+    })();
+
+    domain.StringParams = (function() {
+
+        /**
+         * Properties of a StringParams.
+         * @memberof domain
+         * @interface IStringParams
+         * @property {number|null} [type] StringParams type
+         * @property {string|null} [content] StringParams content
+         */
+
+        /**
+         * Constructs a new StringParams.
+         * @memberof domain
+         * @classdesc Represents a StringParams.
+         * @implements IStringParams
+         * @constructor
+         * @param {domain.IStringParams=} [properties] Properties to set
+         */
+        function StringParams(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * StringParams type.
+         * @member {number} type
+         * @memberof domain.StringParams
+         * @instance
+         */
+        StringParams.prototype.type = 0;
+
+        /**
+         * StringParams content.
+         * @member {string} content
+         * @memberof domain.StringParams
+         * @instance
+         */
+        StringParams.prototype.content = "";
+
+        /**
+         * Creates a new StringParams instance using the specified properties.
+         * @function create
+         * @memberof domain.StringParams
+         * @static
+         * @param {domain.IStringParams=} [properties] Properties to set
+         * @returns {domain.StringParams} StringParams instance
+         */
+        StringParams.create = function create(properties) {
+            return new StringParams(properties);
+        };
+
+        /**
+         * Encodes the specified StringParams message. Does not implicitly {@link domain.StringParams.verify|verify} messages.
+         * @function encode
+         * @memberof domain.StringParams
+         * @static
+         * @param {domain.IStringParams} message StringParams message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        StringParams.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.type);
+            if (message.content != null && Object.hasOwnProperty.call(message, "content"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified StringParams message, length delimited. Does not implicitly {@link domain.StringParams.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof domain.StringParams
+         * @static
+         * @param {domain.IStringParams} message StringParams message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        StringParams.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a StringParams message from the specified reader or buffer.
+         * @function decode
+         * @memberof domain.StringParams
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {domain.StringParams} StringParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        StringParams.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.StringParams();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.type = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.content = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a StringParams message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof domain.StringParams
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {domain.StringParams} StringParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        StringParams.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a StringParams message.
+         * @function verify
+         * @memberof domain.StringParams
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        StringParams.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isInteger(message.type))
+                    return "type: integer expected";
+            if (message.content != null && message.hasOwnProperty("content"))
+                if (!$util.isString(message.content))
+                    return "content: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a StringParams message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof domain.StringParams
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {domain.StringParams} StringParams
+         */
+        StringParams.fromObject = function fromObject(object) {
+            if (object instanceof $root.domain.StringParams)
+                return object;
+            let message = new $root.domain.StringParams();
+            if (object.type != null)
+                message.type = object.type >>> 0;
+            if (object.content != null)
+                message.content = String(object.content);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a StringParams message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof domain.StringParams
+         * @static
+         * @param {domain.StringParams} message StringParams
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        StringParams.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.type = 0;
+                object.content = "";
+            }
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            if (message.content != null && message.hasOwnProperty("content"))
+                object.content = message.content;
+            return object;
+        };
+
+        /**
+         * Converts this StringParams to JSON.
+         * @function toJSON
+         * @memberof domain.StringParams
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        StringParams.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for StringParams
+         * @function getTypeUrl
+         * @memberof domain.StringParams
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        StringParams.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/domain.StringParams";
+        };
+
+        return StringParams;
     })();
 
     return domain;
