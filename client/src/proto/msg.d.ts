@@ -6,9 +6,6 @@ export namespace domain {
     /** Properties of an AlbumParams. */
     interface IAlbumParams {
 
-        /** AlbumParams type */
-        type?: (number|null);
-
         /** AlbumParams page */
         page?: (number|null);
 
@@ -24,9 +21,6 @@ export namespace domain {
          * @param [properties] Properties to set
          */
         constructor(properties?: domain.IAlbumParams);
-
-        /** AlbumParams type. */
-        public type: number;
 
         /** AlbumParams page. */
         public page: number;
@@ -375,9 +369,6 @@ export namespace domain {
     /** Properties of a StringParams. */
     interface IStringParams {
 
-        /** StringParams type */
-        type?: (number|null);
-
         /** StringParams content */
         content?: (string|null);
     }
@@ -390,9 +381,6 @@ export namespace domain {
          * @param [properties] Properties to set
          */
         constructor(properties?: domain.IStringParams);
-
-        /** StringParams type. */
-        public type: number;
 
         /** StringParams content. */
         public content: string;

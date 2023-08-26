@@ -22,7 +22,6 @@ export const domain = $root.domain = (() => {
          * Properties of an AlbumParams.
          * @memberof domain
          * @interface IAlbumParams
-         * @property {number|null} [type] AlbumParams type
          * @property {number|null} [page] AlbumParams page
          * @property {number|null} [size] AlbumParams size
          */
@@ -41,14 +40,6 @@ export const domain = $root.domain = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-
-        /**
-         * AlbumParams type.
-         * @member {number} type
-         * @memberof domain.AlbumParams
-         * @instance
-         */
-        AlbumParams.prototype.type = 0;
 
         /**
          * AlbumParams page.
@@ -90,8 +81,6 @@ export const domain = $root.domain = (() => {
         AlbumParams.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.type);
             if (message.page != null && Object.hasOwnProperty.call(message, "page"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.page);
             if (message.size != null && Object.hasOwnProperty.call(message, "size"))
@@ -130,10 +119,6 @@ export const domain = $root.domain = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1: {
-                        message.type = reader.uint32();
-                        break;
-                    }
                 case 2: {
                         message.page = reader.uint32();
                         break;
@@ -177,9 +162,6 @@ export const domain = $root.domain = (() => {
         AlbumParams.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.type != null && message.hasOwnProperty("type"))
-                if (!$util.isInteger(message.type))
-                    return "type: integer expected";
             if (message.page != null && message.hasOwnProperty("page"))
                 if (!$util.isInteger(message.page))
                     return "page: integer expected";
@@ -201,8 +183,6 @@ export const domain = $root.domain = (() => {
             if (object instanceof $root.domain.AlbumParams)
                 return object;
             let message = new $root.domain.AlbumParams();
-            if (object.type != null)
-                message.type = object.type >>> 0;
             if (object.page != null)
                 message.page = object.page >>> 0;
             if (object.size != null)
@@ -224,12 +204,9 @@ export const domain = $root.domain = (() => {
                 options = {};
             let object = {};
             if (options.defaults) {
-                object.type = 0;
                 object.page = 0;
                 object.size = 0;
             }
-            if (message.type != null && message.hasOwnProperty("type"))
-                object.type = message.type;
             if (message.page != null && message.hasOwnProperty("page"))
                 object.page = message.page;
             if (message.size != null && message.hasOwnProperty("size"))
@@ -981,7 +958,6 @@ export const domain = $root.domain = (() => {
          * Properties of a StringParams.
          * @memberof domain
          * @interface IStringParams
-         * @property {number|null} [type] StringParams type
          * @property {string|null} [content] StringParams content
          */
 
@@ -999,14 +975,6 @@ export const domain = $root.domain = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-
-        /**
-         * StringParams type.
-         * @member {number} type
-         * @memberof domain.StringParams
-         * @instance
-         */
-        StringParams.prototype.type = 0;
 
         /**
          * StringParams content.
@@ -1040,8 +1008,6 @@ export const domain = $root.domain = (() => {
         StringParams.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.type);
             if (message.content != null && Object.hasOwnProperty.call(message, "content"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
             return writer;
@@ -1078,10 +1044,6 @@ export const domain = $root.domain = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1: {
-                        message.type = reader.uint32();
-                        break;
-                    }
                 case 2: {
                         message.content = reader.string();
                         break;
@@ -1121,9 +1083,6 @@ export const domain = $root.domain = (() => {
         StringParams.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.type != null && message.hasOwnProperty("type"))
-                if (!$util.isInteger(message.type))
-                    return "type: integer expected";
             if (message.content != null && message.hasOwnProperty("content"))
                 if (!$util.isString(message.content))
                     return "content: string expected";
@@ -1142,8 +1101,6 @@ export const domain = $root.domain = (() => {
             if (object instanceof $root.domain.StringParams)
                 return object;
             let message = new $root.domain.StringParams();
-            if (object.type != null)
-                message.type = object.type >>> 0;
             if (object.content != null)
                 message.content = String(object.content);
             return message;
@@ -1162,12 +1119,8 @@ export const domain = $root.domain = (() => {
             if (!options)
                 options = {};
             let object = {};
-            if (options.defaults) {
-                object.type = 0;
+            if (options.defaults)
                 object.content = "";
-            }
-            if (message.type != null && message.hasOwnProperty("type"))
-                object.type = message.type;
             if (message.content != null && message.hasOwnProperty("content"))
                 object.content = message.content;
             return object;

@@ -3,6 +3,5 @@ syntax = "proto3";
 package domain;
 
 message StringParams {
-	uint32 type = 1;
 	string content = 2;
 }

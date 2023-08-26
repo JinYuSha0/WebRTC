@@ -3,7 +3,6 @@ syntax = "proto3";
 package domain;
 
 message AlbumParams {
-  uint32 type = 1;
   uint32 page = 2;
   uint32 size = 3;
 }
