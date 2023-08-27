@@ -1,6 +1,6 @@
 import Msg from "../proto/msg";
 
-enum EventType {
+export enum EventType {
   String = 0,
   AlbumList = 1,
 }
@@ -9,12 +9,6 @@ function typeBytes(type: number) {
   if (type < 0 || type > 65535)
     throw new Error("type range must in [0, 65535]");
   return new Uint8Array([type >> 8, type & 255]);
-}
-
-function getTypeValue(buffer: Uint8Array) {
-  const first = buffer[0];
-  const second = buffer[1];
-  return (first << 8) | second;
 }
 
 function mergeTypeBytes(type: number, buffer: Uint8Array) {

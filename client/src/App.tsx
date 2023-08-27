@@ -1,6 +1,7 @@
 import { useEffect, useState, memo } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { getAlbumListParams, sendStringParams } from "./msg/send";
+import { EventType, getAlbumListParams, sendStringParams } from "./msg/send";
+import { getTypeValue, getAlbumListByProtobuf } from "./msg/receive";
 import useEvent from "./hooks/useEvent";
 import useICE from "./hooks/useICE";
 
@@ -18,7 +19,14 @@ function App() {
     //   const msg = arrayBufferToString(event.data as unknown as ArrayBuffer);
     //   setReceiveMsg((prev) => [...prev, msg]);
     // }
-    console.log(this.label, event.data);
+    console.log(event.data);
+    const type = getTypeValue(event.data);
+    switch (type) {
+      case EventType.AlbumList:
+        const albumList = getAlbumListByProtobuf(event.data);
+        console.log(albumList);
+        break;
+    }
   });
   const { isConnect, isChannelOpen, code1, code2, open, close, send } =
     useICE(onMessage);
