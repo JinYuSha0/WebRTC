@@ -19,6 +19,10 @@ const getRandomId = () => Math.random().toString().slice(2, 8);
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
+
 io.on("connection", (socket) => {
   const id = getRandomId();
   console.log(`进来了:${id}`);

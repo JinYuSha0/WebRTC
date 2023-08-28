@@ -3,6 +3,7 @@ syntax = "proto3";
 package domain;
 
 message AlbumParams {
+  string taskId = 1;
   uint32 page = 2;
   uint32 size = 3;
 }
@@ -23,5 +24,6 @@ message Album {
 }
 
 message AlbumList {
-  repeated Album list = 1;
+  string taskId = 1;
+  repeated Album list = 2;
 }

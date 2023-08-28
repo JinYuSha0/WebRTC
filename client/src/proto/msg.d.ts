@@ -6,6 +6,9 @@ export namespace domain {
     /** Properties of an AlbumParams. */
     interface IAlbumParams {
 
+        /** AlbumParams taskId */
+        taskId?: (string|null);
+
         /** AlbumParams page */
         page?: (number|null);
 
@@ -21,6 +24,9 @@ export namespace domain {
          * @param [properties] Properties to set
          */
         constructor(properties?: domain.IAlbumParams);
+
+        /** AlbumParams taskId. */
+        public taskId: string;
 
         /** AlbumParams page. */
         public page: number;
@@ -272,6 +278,9 @@ export namespace domain {
     /** Properties of an AlbumList. */
     interface IAlbumList {
 
+        /** AlbumList taskId */
+        taskId?: (string|null);
+
         /** AlbumList list */
         list?: (domain.IAlbum[]|null);
     }
@@ -284,6 +293,9 @@ export namespace domain {
          * @param [properties] Properties to set
          */
         constructor(properties?: domain.IAlbumList);
+
+        /** AlbumList taskId. */
+        public taskId: string;
 
         /** AlbumList list. */
         public list: domain.IAlbum[];
@@ -369,6 +381,9 @@ export namespace domain {
     /** Properties of a StringParams. */
     interface IStringParams {
 
+        /** StringParams taskId */
+        taskId?: (string|null);
+
         /** StringParams content */
         content?: (string|null);
     }
@@ -381,6 +396,9 @@ export namespace domain {
          * @param [properties] Properties to set
          */
         constructor(properties?: domain.IStringParams);
+
+        /** StringParams taskId. */
+        public taskId: string;
 
         /** StringParams content. */
         public content: string;

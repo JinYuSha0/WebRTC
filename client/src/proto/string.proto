@@ -3,5 +3,6 @@ syntax = "proto3";
 package domain;
 
 message StringParams {
+	string taskId = 1;
 	string content = 2;
 }

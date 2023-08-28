@@ -22,6 +22,7 @@ export const domain = $root.domain = (() => {
          * Properties of an AlbumParams.
          * @memberof domain
          * @interface IAlbumParams
+         * @property {string|null} [taskId] AlbumParams taskId
          * @property {number|null} [page] AlbumParams page
          * @property {number|null} [size] AlbumParams size
          */
@@ -40,6 +41,14 @@ export const domain = $root.domain = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * AlbumParams taskId.
+         * @member {string} taskId
+         * @memberof domain.AlbumParams
+         * @instance
+         */
+        AlbumParams.prototype.taskId = "";
 
         /**
          * AlbumParams page.
@@ -81,6 +90,8 @@ export const domain = $root.domain = (() => {
         AlbumParams.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.taskId != null && Object.hasOwnProperty.call(message, "taskId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.taskId);
             if (message.page != null && Object.hasOwnProperty.call(message, "page"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.page);
             if (message.size != null && Object.hasOwnProperty.call(message, "size"))
@@ -119,6 +130,10 @@ export const domain = $root.domain = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
+                case 1: {
+                        message.taskId = reader.string();
+                        break;
+                    }
                 case 2: {
                         message.page = reader.uint32();
                         break;
@@ -162,6 +177,9 @@ export const domain = $root.domain = (() => {
         AlbumParams.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                if (!$util.isString(message.taskId))
+                    return "taskId: string expected";
             if (message.page != null && message.hasOwnProperty("page"))
                 if (!$util.isInteger(message.page))
                     return "page: integer expected";
@@ -183,6 +201,8 @@ export const domain = $root.domain = (() => {
             if (object instanceof $root.domain.AlbumParams)
                 return object;
             let message = new $root.domain.AlbumParams();
+            if (object.taskId != null)
+                message.taskId = String(object.taskId);
             if (object.page != null)
                 message.page = object.page >>> 0;
             if (object.size != null)
@@ -204,9 +224,12 @@ export const domain = $root.domain = (() => {
                 options = {};
             let object = {};
             if (options.defaults) {
+                object.taskId = "";
                 object.page = 0;
                 object.size = 0;
             }
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                object.taskId = message.taskId;
             if (message.page != null && message.hasOwnProperty("page"))
                 object.page = message.page;
             if (message.size != null && message.hasOwnProperty("size"))
@@ -734,6 +757,7 @@ export const domain = $root.domain = (() => {
          * Properties of an AlbumList.
          * @memberof domain
          * @interface IAlbumList
+         * @property {string|null} [taskId] AlbumList taskId
          * @property {Array.<domain.IAlbum>|null} [list] AlbumList list
          */
 
@@ -752,6 +776,14 @@ export const domain = $root.domain = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * AlbumList taskId.
+         * @member {string} taskId
+         * @memberof domain.AlbumList
+         * @instance
+         */
+        AlbumList.prototype.taskId = "";
 
         /**
          * AlbumList list.
@@ -785,9 +817,11 @@ export const domain = $root.domain = (() => {
         AlbumList.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.taskId != null && Object.hasOwnProperty.call(message, "taskId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.taskId);
             if (message.list != null && message.list.length)
                 for (let i = 0; i < message.list.length; ++i)
-                    $root.domain.Album.encode(message.list[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.domain.Album.encode(message.list[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -823,6 +857,10 @@ export const domain = $root.domain = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
+                        message.taskId = reader.string();
+                        break;
+                    }
+                case 2: {
                         if (!(message.list && message.list.length))
                             message.list = [];
                         message.list.push($root.domain.Album.decode(reader, reader.uint32()));
@@ -863,6 +901,9 @@ export const domain = $root.domain = (() => {
         AlbumList.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                if (!$util.isString(message.taskId))
+                    return "taskId: string expected";
             if (message.list != null && message.hasOwnProperty("list")) {
                 if (!Array.isArray(message.list))
                     return "list: array expected";
@@ -887,6 +928,8 @@ export const domain = $root.domain = (() => {
             if (object instanceof $root.domain.AlbumList)
                 return object;
             let message = new $root.domain.AlbumList();
+            if (object.taskId != null)
+                message.taskId = String(object.taskId);
             if (object.list) {
                 if (!Array.isArray(object.list))
                     throw TypeError(".domain.AlbumList.list: array expected");
@@ -915,6 +958,10 @@ export const domain = $root.domain = (() => {
             let object = {};
             if (options.arrays || options.defaults)
                 object.list = [];
+            if (options.defaults)
+                object.taskId = "";
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                object.taskId = message.taskId;
             if (message.list && message.list.length) {
                 object.list = [];
                 for (let j = 0; j < message.list.length; ++j)
@@ -958,6 +1005,7 @@ export const domain = $root.domain = (() => {
          * Properties of a StringParams.
          * @memberof domain
          * @interface IStringParams
+         * @property {string|null} [taskId] StringParams taskId
          * @property {string|null} [content] StringParams content
          */
 
@@ -975,6 +1023,14 @@ export const domain = $root.domain = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * StringParams taskId.
+         * @member {string} taskId
+         * @memberof domain.StringParams
+         * @instance
+         */
+        StringParams.prototype.taskId = "";
 
         /**
          * StringParams content.
@@ -1008,6 +1064,8 @@ export const domain = $root.domain = (() => {
         StringParams.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.taskId != null && Object.hasOwnProperty.call(message, "taskId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.taskId);
             if (message.content != null && Object.hasOwnProperty.call(message, "content"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
             return writer;
@@ -1044,6 +1102,10 @@ export const domain = $root.domain = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
+                case 1: {
+                        message.taskId = reader.string();
+                        break;
+                    }
                 case 2: {
                         message.content = reader.string();
                         break;
@@ -1083,6 +1145,9 @@ export const domain = $root.domain = (() => {
         StringParams.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                if (!$util.isString(message.taskId))
+                    return "taskId: string expected";
             if (message.content != null && message.hasOwnProperty("content"))
                 if (!$util.isString(message.content))
                     return "content: string expected";
@@ -1101,6 +1166,8 @@ export const domain = $root.domain = (() => {
             if (object instanceof $root.domain.StringParams)
                 return object;
             let message = new $root.domain.StringParams();
+            if (object.taskId != null)
+                message.taskId = String(object.taskId);
             if (object.content != null)
                 message.content = String(object.content);
             return message;
@@ -1119,8 +1186,12 @@ export const domain = $root.domain = (() => {
             if (!options)
                 options = {};
             let object = {};
-            if (options.defaults)
+            if (options.defaults) {
+                object.taskId = "";
                 object.content = "";
+            }
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                object.taskId = message.taskId;
             if (message.content != null && message.hasOwnProperty("content"))
                 object.content = message.content;
             return object;

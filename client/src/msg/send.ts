@@ -1,4 +1,4 @@
-import Msg from "../proto/msg";
+import Msg from "@/proto/msg";
 
 export enum EventType {
   String = 0,
@@ -19,19 +19,21 @@ function mergeTypeBytes(type: number, buffer: Uint8Array) {
   return mergedArray;
 }
 
-export function sendStringParams(content: string) {
+export function sendStringParams(taskId: string, content: string) {
   return mergeTypeBytes(
     EventType.String,
     Msg.domain.StringParams.encode({
+      taskId,
       content,
     }).finish()
   );
 }
 
-export function getAlbumListParams(page: number, size: number) {
+export function getAlbumListParams(taskId: string, page: number, size: number) {
   return mergeTypeBytes(
     EventType.AlbumList,
     Msg.domain.AlbumParams.encode({
+      taskId,
       page,
       size,
     }).finish()
