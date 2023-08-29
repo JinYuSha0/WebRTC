@@ -25,6 +25,10 @@ export class TaskPool {
 
   public notify(taskId: string, value: any) {
     const deferred = this.tasks.get(taskId);
+    if (Object.hasOwnProperty.call(value, "taskId")) {
+      const { taskId, ...rest } = value;
+      value = rest;
+    }
     deferred?.resolve(value);
     this.tasks.delete(taskId);
   }

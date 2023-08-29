@@ -3,6 +3,7 @@ import Msg from "@/proto/msg";
 export enum EventType {
   String = 0,
   AlbumList = 1,
+  BaseInfo = 2,
 }
 
 function typeBytes(type: number) {
@@ -36,6 +37,15 @@ export function getAlbumListParams(taskId: string, page: number, size: number) {
       taskId,
       page,
       size,
+    }).finish()
+  );
+}
+
+export function getBaseInfoParams(taskId: string) {
+  return mergeTypeBytes(
+    EventType.BaseInfo,
+    Msg.domain.BaseInfoParams.encode({
+      taskId,
     }).finish()
   );
 }

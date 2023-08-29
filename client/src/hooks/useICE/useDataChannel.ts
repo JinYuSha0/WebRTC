@@ -7,7 +7,8 @@ type EmitFunc = (
 ) => ReturnType<Socket["emit"]> | undefined;
 
 export default function useDataChannel(
-  onMessage: (event: MessageEvent) => void
+  onMessage: (event: MessageEvent) => void,
+  onChannelOpen: (channel: RTCDataChannel) => void
 ) {
   const [isChannelOpen, setChannelOpen] = useState(false);
   const localConnectionRef = useRef<RTCPeerConnection | null>(null);
@@ -32,6 +33,7 @@ export default function useDataChannel(
       const state = this.readyState;
       if (state === "open") {
         const maxSize = localConnectionRef.current!.sctp?.maxMessageSize;
+        onChannelOpen(this);
         setChannelOpen(true);
       } else {
         setChannelOpen(false);

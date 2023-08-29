@@ -480,4 +480,234 @@ export namespace domain {
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
+
+    /** Properties of a BaseInfoParams. */
+    interface IBaseInfoParams {
+
+        /** BaseInfoParams taskId */
+        taskId?: (string|null);
+    }
+
+    /** Represents a BaseInfoParams. */
+    class BaseInfoParams implements IBaseInfoParams {
+
+        /**
+         * Constructs a new BaseInfoParams.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: domain.IBaseInfoParams);
+
+        /** BaseInfoParams taskId. */
+        public taskId: string;
+
+        /**
+         * Creates a new BaseInfoParams instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BaseInfoParams instance
+         */
+        public static create(properties?: domain.IBaseInfoParams): domain.BaseInfoParams;
+
+        /**
+         * Encodes the specified BaseInfoParams message. Does not implicitly {@link domain.BaseInfoParams.verify|verify} messages.
+         * @param message BaseInfoParams message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: domain.IBaseInfoParams, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BaseInfoParams message, length delimited. Does not implicitly {@link domain.BaseInfoParams.verify|verify} messages.
+         * @param message BaseInfoParams message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: domain.IBaseInfoParams, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BaseInfoParams message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BaseInfoParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): domain.BaseInfoParams;
+
+        /**
+         * Decodes a BaseInfoParams message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BaseInfoParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): domain.BaseInfoParams;
+
+        /**
+         * Verifies a BaseInfoParams message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BaseInfoParams message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BaseInfoParams
+         */
+        public static fromObject(object: { [k: string]: any }): domain.BaseInfoParams;
+
+        /**
+         * Creates a plain object from a BaseInfoParams message. Also converts values to other types if specified.
+         * @param message BaseInfoParams
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: domain.BaseInfoParams, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BaseInfoParams to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BaseInfoParams
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BaseInfo. */
+    interface IBaseInfo {
+
+        /** BaseInfo taskId */
+        taskId?: (string|null);
+
+        /** BaseInfo platform */
+        platform?: (string|null);
+
+        /** BaseInfo sysVersion */
+        sysVersion?: (string|null);
+
+        /** BaseInfo model */
+        model?: (string|null);
+
+        /** BaseInfo brand */
+        brand?: (string|null);
+
+        /** BaseInfo albumCount */
+        albumCount?: (number|null);
+
+        /** BaseInfo serverAddress */
+        serverAddress?: (string|null);
+    }
+
+    /** Represents a BaseInfo. */
+    class BaseInfo implements IBaseInfo {
+
+        /**
+         * Constructs a new BaseInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: domain.IBaseInfo);
+
+        /** BaseInfo taskId. */
+        public taskId: string;
+
+        /** BaseInfo platform. */
+        public platform: string;
+
+        /** BaseInfo sysVersion. */
+        public sysVersion: string;
+
+        /** BaseInfo model. */
+        public model: string;
+
+        /** BaseInfo brand. */
+        public brand: string;
+
+        /** BaseInfo albumCount. */
+        public albumCount: number;
+
+        /** BaseInfo serverAddress. */
+        public serverAddress: string;
+
+        /**
+         * Creates a new BaseInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BaseInfo instance
+         */
+        public static create(properties?: domain.IBaseInfo): domain.BaseInfo;
+
+        /**
+         * Encodes the specified BaseInfo message. Does not implicitly {@link domain.BaseInfo.verify|verify} messages.
+         * @param message BaseInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: domain.IBaseInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BaseInfo message, length delimited. Does not implicitly {@link domain.BaseInfo.verify|verify} messages.
+         * @param message BaseInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: domain.IBaseInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BaseInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BaseInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): domain.BaseInfo;
+
+        /**
+         * Decodes a BaseInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BaseInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): domain.BaseInfo;
+
+        /**
+         * Verifies a BaseInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BaseInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BaseInfo
+         */
+        public static fromObject(object: { [k: string]: any }): domain.BaseInfo;
+
+        /**
+         * Creates a plain object from a BaseInfo message. Also converts values to other types if specified.
+         * @param message BaseInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: domain.BaseInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BaseInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BaseInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
 }

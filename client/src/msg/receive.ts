@@ -13,3 +13,10 @@ export function getAlbumListByProtobuf(
   const uint8Array = new Uint8Array(buffer.slice(2));
   return Msg.domain.AlbumList.decode(uint8Array);
 }
+
+export function getBaseInfoByProtobuf(
+  buffer: ArrayBuffer
+): Msg.domain.BaseInfo {
+  const uint8Array = new Uint8Array(buffer.slice(2));
+  return Msg.domain.BaseInfo.decode(uint8Array);
+}

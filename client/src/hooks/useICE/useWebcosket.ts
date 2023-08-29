@@ -12,8 +12,11 @@ enum SocketEvent {
   ReceiveCandidate = "receiveCandidate",
 }
 
-export default function useWebsocket(onMessage: (event: MessageEvent) => void) {
-  const dataChannel = useDataChannel(onMessage);
+export default function useWebsocket(
+  onMessage: (event: MessageEvent) => void,
+  onChannelOpen: (channel: RTCDataChannel) => void
+) {
+  const dataChannel = useDataChannel(onMessage, onChannelOpen);
   const applyPermission = usePermission();
   const [isConnect, setIsConnect] = useState(false);
   const [code1, setCode1] = useState<string>();

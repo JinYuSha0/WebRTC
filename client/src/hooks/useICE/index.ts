@@ -1,5 +1,8 @@
 import useWebsocket from "./useWebcosket";
 
-export default function (onMessage: (event: MessageEvent) => void) {
-  return useWebsocket(onMessage);
+export default function (
+  onMessage: (event: MessageEvent) => void,
+  onChannelOpen: (channel: RTCDataChannel) => void
+) {
+  return useWebsocket(onMessage, onChannelOpen);
 }

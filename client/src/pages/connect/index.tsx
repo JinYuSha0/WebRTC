@@ -4,7 +4,8 @@ import { useIceContext } from "@/components/iceContext";
 import { useNavigate } from "react-router-dom";
 
 const Connect: React.FC<{}> = (props) => {
-  const { isConnect, isChannelOpen, code1, code2, open } = useIceContext();
+  const { isConnect, isChannelOpen, code1, code2, baseInfo, open } =
+    useIceContext();
   const navigate = useNavigate();
   useEffect(() => {
     if (!isConnect) {
@@ -12,10 +13,10 @@ const Connect: React.FC<{}> = (props) => {
     }
   }, [isConnect]);
   useEffect(() => {
-    if (isChannelOpen) {
+    if (isChannelOpen && baseInfo) {
       navigate("/dashboard");
     }
-  }, [isChannelOpen]);
+  }, [isChannelOpen, baseInfo]);
   return (
     <div className="App">
       <p>WS连接状态: {isConnect ? "已连接" : "未连接"}</p>

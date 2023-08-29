@@ -1226,6 +1226,551 @@ export const domain = $root.domain = (() => {
         return StringParams;
     })();
 
+    domain.BaseInfoParams = (function() {
+
+        /**
+         * Properties of a BaseInfoParams.
+         * @memberof domain
+         * @interface IBaseInfoParams
+         * @property {string|null} [taskId] BaseInfoParams taskId
+         */
+
+        /**
+         * Constructs a new BaseInfoParams.
+         * @memberof domain
+         * @classdesc Represents a BaseInfoParams.
+         * @implements IBaseInfoParams
+         * @constructor
+         * @param {domain.IBaseInfoParams=} [properties] Properties to set
+         */
+        function BaseInfoParams(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BaseInfoParams taskId.
+         * @member {string} taskId
+         * @memberof domain.BaseInfoParams
+         * @instance
+         */
+        BaseInfoParams.prototype.taskId = "";
+
+        /**
+         * Creates a new BaseInfoParams instance using the specified properties.
+         * @function create
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {domain.IBaseInfoParams=} [properties] Properties to set
+         * @returns {domain.BaseInfoParams} BaseInfoParams instance
+         */
+        BaseInfoParams.create = function create(properties) {
+            return new BaseInfoParams(properties);
+        };
+
+        /**
+         * Encodes the specified BaseInfoParams message. Does not implicitly {@link domain.BaseInfoParams.verify|verify} messages.
+         * @function encode
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {domain.IBaseInfoParams} message BaseInfoParams message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BaseInfoParams.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.taskId != null && Object.hasOwnProperty.call(message, "taskId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.taskId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BaseInfoParams message, length delimited. Does not implicitly {@link domain.BaseInfoParams.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {domain.IBaseInfoParams} message BaseInfoParams message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BaseInfoParams.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BaseInfoParams message from the specified reader or buffer.
+         * @function decode
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {domain.BaseInfoParams} BaseInfoParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BaseInfoParams.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.BaseInfoParams();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.taskId = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BaseInfoParams message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {domain.BaseInfoParams} BaseInfoParams
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BaseInfoParams.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BaseInfoParams message.
+         * @function verify
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BaseInfoParams.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                if (!$util.isString(message.taskId))
+                    return "taskId: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BaseInfoParams message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {domain.BaseInfoParams} BaseInfoParams
+         */
+        BaseInfoParams.fromObject = function fromObject(object) {
+            if (object instanceof $root.domain.BaseInfoParams)
+                return object;
+            let message = new $root.domain.BaseInfoParams();
+            if (object.taskId != null)
+                message.taskId = String(object.taskId);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BaseInfoParams message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {domain.BaseInfoParams} message BaseInfoParams
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BaseInfoParams.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.taskId = "";
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                object.taskId = message.taskId;
+            return object;
+        };
+
+        /**
+         * Converts this BaseInfoParams to JSON.
+         * @function toJSON
+         * @memberof domain.BaseInfoParams
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BaseInfoParams.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BaseInfoParams
+         * @function getTypeUrl
+         * @memberof domain.BaseInfoParams
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BaseInfoParams.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/domain.BaseInfoParams";
+        };
+
+        return BaseInfoParams;
+    })();
+
+    domain.BaseInfo = (function() {
+
+        /**
+         * Properties of a BaseInfo.
+         * @memberof domain
+         * @interface IBaseInfo
+         * @property {string|null} [taskId] BaseInfo taskId
+         * @property {string|null} [platform] BaseInfo platform
+         * @property {string|null} [sysVersion] BaseInfo sysVersion
+         * @property {string|null} [model] BaseInfo model
+         * @property {string|null} [brand] BaseInfo brand
+         * @property {number|null} [albumCount] BaseInfo albumCount
+         * @property {string|null} [serverAddress] BaseInfo serverAddress
+         */
+
+        /**
+         * Constructs a new BaseInfo.
+         * @memberof domain
+         * @classdesc Represents a BaseInfo.
+         * @implements IBaseInfo
+         * @constructor
+         * @param {domain.IBaseInfo=} [properties] Properties to set
+         */
+        function BaseInfo(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BaseInfo taskId.
+         * @member {string} taskId
+         * @memberof domain.BaseInfo
+         * @instance
+         */
+        BaseInfo.prototype.taskId = "";
+
+        /**
+         * BaseInfo platform.
+         * @member {string} platform
+         * @memberof domain.BaseInfo
+         * @instance
+         */
+        BaseInfo.prototype.platform = "";
+
+        /**
+         * BaseInfo sysVersion.
+         * @member {string} sysVersion
+         * @memberof domain.BaseInfo
+         * @instance
+         */
+        BaseInfo.prototype.sysVersion = "";
+
+        /**
+         * BaseInfo model.
+         * @member {string} model
+         * @memberof domain.BaseInfo
+         * @instance
+         */
+        BaseInfo.prototype.model = "";
+
+        /**
+         * BaseInfo brand.
+         * @member {string} brand
+         * @memberof domain.BaseInfo
+         * @instance
+         */
+        BaseInfo.prototype.brand = "";
+
+        /**
+         * BaseInfo albumCount.
+         * @member {number} albumCount
+         * @memberof domain.BaseInfo
+         * @instance
+         */
+        BaseInfo.prototype.albumCount = 0;
+
+        /**
+         * BaseInfo serverAddress.
+         * @member {string} serverAddress
+         * @memberof domain.BaseInfo
+         * @instance
+         */
+        BaseInfo.prototype.serverAddress = "";
+
+        /**
+         * Creates a new BaseInfo instance using the specified properties.
+         * @function create
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {domain.IBaseInfo=} [properties] Properties to set
+         * @returns {domain.BaseInfo} BaseInfo instance
+         */
+        BaseInfo.create = function create(properties) {
+            return new BaseInfo(properties);
+        };
+
+        /**
+         * Encodes the specified BaseInfo message. Does not implicitly {@link domain.BaseInfo.verify|verify} messages.
+         * @function encode
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {domain.IBaseInfo} message BaseInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BaseInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.taskId != null && Object.hasOwnProperty.call(message, "taskId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.taskId);
+            if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.platform);
+            if (message.sysVersion != null && Object.hasOwnProperty.call(message, "sysVersion"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.sysVersion);
+            if (message.model != null && Object.hasOwnProperty.call(message, "model"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.model);
+            if (message.brand != null && Object.hasOwnProperty.call(message, "brand"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.brand);
+            if (message.albumCount != null && Object.hasOwnProperty.call(message, "albumCount"))
+                writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.albumCount);
+            if (message.serverAddress != null && Object.hasOwnProperty.call(message, "serverAddress"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.serverAddress);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BaseInfo message, length delimited. Does not implicitly {@link domain.BaseInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {domain.IBaseInfo} message BaseInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BaseInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BaseInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {domain.BaseInfo} BaseInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BaseInfo.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.domain.BaseInfo();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.taskId = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.platform = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.sysVersion = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.model = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.brand = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.albumCount = reader.uint32();
+                        break;
+                    }
+                case 7: {
+                        message.serverAddress = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BaseInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {domain.BaseInfo} BaseInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BaseInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BaseInfo message.
+         * @function verify
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BaseInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                if (!$util.isString(message.taskId))
+                    return "taskId: string expected";
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                if (!$util.isString(message.platform))
+                    return "platform: string expected";
+            if (message.sysVersion != null && message.hasOwnProperty("sysVersion"))
+                if (!$util.isString(message.sysVersion))
+                    return "sysVersion: string expected";
+            if (message.model != null && message.hasOwnProperty("model"))
+                if (!$util.isString(message.model))
+                    return "model: string expected";
+            if (message.brand != null && message.hasOwnProperty("brand"))
+                if (!$util.isString(message.brand))
+                    return "brand: string expected";
+            if (message.albumCount != null && message.hasOwnProperty("albumCount"))
+                if (!$util.isInteger(message.albumCount))
+                    return "albumCount: integer expected";
+            if (message.serverAddress != null && message.hasOwnProperty("serverAddress"))
+                if (!$util.isString(message.serverAddress))
+                    return "serverAddress: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BaseInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {domain.BaseInfo} BaseInfo
+         */
+        BaseInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.domain.BaseInfo)
+                return object;
+            let message = new $root.domain.BaseInfo();
+            if (object.taskId != null)
+                message.taskId = String(object.taskId);
+            if (object.platform != null)
+                message.platform = String(object.platform);
+            if (object.sysVersion != null)
+                message.sysVersion = String(object.sysVersion);
+            if (object.model != null)
+                message.model = String(object.model);
+            if (object.brand != null)
+                message.brand = String(object.brand);
+            if (object.albumCount != null)
+                message.albumCount = object.albumCount >>> 0;
+            if (object.serverAddress != null)
+                message.serverAddress = String(object.serverAddress);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BaseInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {domain.BaseInfo} message BaseInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BaseInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.taskId = "";
+                object.platform = "";
+                object.sysVersion = "";
+                object.model = "";
+                object.brand = "";
+                object.albumCount = 0;
+                object.serverAddress = "";
+            }
+            if (message.taskId != null && message.hasOwnProperty("taskId"))
+                object.taskId = message.taskId;
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                object.platform = message.platform;
+            if (message.sysVersion != null && message.hasOwnProperty("sysVersion"))
+                object.sysVersion = message.sysVersion;
+            if (message.model != null && message.hasOwnProperty("model"))
+                object.model = message.model;
+            if (message.brand != null && message.hasOwnProperty("brand"))
+                object.brand = message.brand;
+            if (message.albumCount != null && message.hasOwnProperty("albumCount"))
+                object.albumCount = message.albumCount;
+            if (message.serverAddress != null && message.hasOwnProperty("serverAddress"))
+                object.serverAddress = message.serverAddress;
+            return object;
+        };
+
+        /**
+         * Converts this BaseInfo to JSON.
+         * @function toJSON
+         * @memberof domain.BaseInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BaseInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BaseInfo
+         * @function getTypeUrl
+         * @memberof domain.BaseInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BaseInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/domain.BaseInfo";
+        };
+
+        return BaseInfo;
+    })();
+
     return domain;
 })();
 

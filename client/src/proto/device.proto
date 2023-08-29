@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package domain;
+
+message BaseInfoParams {
+  string taskId = 1;
+}
+
+message BaseInfo {
+  string taskId = 1;
+  string platform = 2;
+  string sysVersion = 3;
+  string model = 4;
+  string brand = 5;
+  uint32 albumCount = 6;
+  string serverAddress = 7;
+}

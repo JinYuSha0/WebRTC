@@ -4,6 +4,8 @@ declare global {
   ) => any
     ? A
     : never;
+
+  export type ExcludeTaskId<T> = Omit<T, "taskId">;
 }
 
 export {};
