@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
 import Connect from "@pages/connect";
 import Doshboard from "@pages/doshboard";
+import Album from "@pages/album";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { IceProvider } from "./components/iceContext";
 
 const router = createBrowserRouter([
@@ -17,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Doshboard />,
+  },
+  {
+    path: "/album",
+    element: <Album />,
   },
 ]);
 

@@ -51,13 +51,11 @@ export const IceProvider: React.FC<React.PropsWithChildren<{}>> = (props) => {
     }
   });
   const onChannelOpen = useEvent(async (channel: RTCDataChannel) => {
-    console.log("onChannelOpen");
     const taskId = TaskPool.genTaskId();
     channel.send(getBaseInfoParams(taskId));
     const baseInfo = await taskPool.wait<ExcludeTaskId<domain.IBaseInfo>>(
       taskId
     );
-    console.log("baseInfo", baseInfo);
     setBaseInfo(baseInfo);
   });
   const iceInstance = useICE(onMessage, onChannelOpen);
@@ -87,6 +85,12 @@ export const IceProvider: React.FC<React.PropsWithChildren<{}>> = (props) => {
     iceInstance.open();
     return iceInstance.close;
   }, []);
+  useEffect(() => {
+    if (baseInfo !== null && !iceInstance.isChannelOpen) {
+      location.href = "/";
+      setBaseInfo(null);
+    }
+  }, [iceInstance.isChannelOpen]);
   return (
     <IceContext.Provider value={value}>{props.children}</IceContext.Provider>
   );
