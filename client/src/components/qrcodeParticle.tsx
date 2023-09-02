@@ -67,7 +67,7 @@ const QrcodeParticle: React.FC<{ code: string }> = (props) => {
             delay: y / 30,
             ease: Elastic.easeOut,
           })
-          .timeScale(4);
+          .timeScale(6);
         particles.push(particle);
       }
     }
