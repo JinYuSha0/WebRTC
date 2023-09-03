@@ -81,7 +81,8 @@ const Album: React.FC<{}> = (props) => {
                 columnCount={NUM_COLUMNS}
                 itemData={albumList}
                 rowCount={rowCount}
-                overscanColumnCount={8}
+                overscanRowCount={8}
+                style={{ overflowX: "hidden" }}
                 onItemsRendered={(gridProps) => {
                   onItemsRendered({
                     overscanStartIndex:
