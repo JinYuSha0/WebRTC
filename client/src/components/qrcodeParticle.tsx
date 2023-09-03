@@ -76,7 +76,7 @@ const QrcodeParticle: React.FC<{ code: string }> = (props) => {
                   }
                 : undefined,
           })
-          .timeScale(6);
+          .timeScale(4);
         particles.push(particle);
       }
     }

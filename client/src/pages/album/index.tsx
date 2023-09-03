@@ -1,5 +1,4 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import memoize from "memoize-one";
+import React, { memo, useEffect, useRef, useState } from "react";
 import useEvent from "@/hooks/useEvent";
 import AutoSizer from "react-virtualized-auto-sizer";
 import InfiniteLoader from "react-window-infinite-loader";
@@ -19,7 +18,7 @@ const Cell: React.FC<{
   const index = rowIndex * 8 + columnIndex;
   const album = data[index];
   return (
-    <div style={style} className="w-[180px] h-[320px] inline-block">
+    <div style={style} className="inline-block">
       {album != null ? (
         <img
           className="w-full h-full object-cover"
@@ -41,7 +40,6 @@ const Album: React.FC<{}> = (props) => {
     try {
       setIsNextPageLoading(true);
       const res = await getAlbumList(pageRef.current, 96);
-      console.log(res);
       pageRef.current++;
       setHasNextPage(albumList.length + res.length < (albumCount ?? 0));
       setAlbumList((prev) => [...prev, ...res]);
@@ -63,40 +61,46 @@ const Album: React.FC<{}> = (props) => {
   }, []);
   return (
     <AutoSizer>
-      {({ width, height }: { width: number; height: number }) => (
-        <InfiniteLoader
-          isItemLoaded={_isItemLoaded}
-          itemCount={albumCount ?? 0}
-          loadMoreItems={_loadMoreItems}
-        >
-          {({ onItemsRendered, ref }) => (
-            <Grid
-              ref={ref}
-              width={width}
-              height={height}
-              columnWidth={180}
-              rowHeight={320}
-              columnCount={NUM_COLUMNS}
-              itemData={albumList}
-              rowCount={Math.ceil(albumList.length / NUM_COLUMNS)}
-              overscanColumnCount={8}
-              onItemsRendered={(gridProps) => {
-                onItemsRendered({
-                  overscanStartIndex:
-                    gridProps.overscanRowStartIndex * NUM_COLUMNS,
-                  overscanStopIndex:
-                    gridProps.overscanRowStopIndex * NUM_COLUMNS,
-                  visibleStartIndex:
-                    gridProps.visibleRowStartIndex * NUM_COLUMNS,
-                  visibleStopIndex: gridProps.visibleRowStopIndex * NUM_COLUMNS,
-                });
-              }}
-            >
-              {Cell}
-            </Grid>
-          )}
-        </InfiniteLoader>
-      )}
+      {({ width, height }: { width: number; height: number }) => {
+        const columnWidth = width / NUM_COLUMNS;
+        const rowHeight = columnWidth * (16 / 9);
+        const rowCount = Math.ceil(albumList.length / NUM_COLUMNS);
+        return (
+          <InfiniteLoader
+            isItemLoaded={_isItemLoaded}
+            itemCount={albumCount ?? 0}
+            loadMoreItems={_loadMoreItems}
+          >
+            {({ onItemsRendered, ref }) => (
+              <Grid
+                ref={ref}
+                width={width}
+                height={height}
+                columnWidth={columnWidth}
+                rowHeight={rowHeight}
+                columnCount={NUM_COLUMNS}
+                itemData={albumList}
+                rowCount={rowCount}
+                overscanColumnCount={8}
+                onItemsRendered={(gridProps) => {
+                  onItemsRendered({
+                    overscanStartIndex:
+                      gridProps.overscanRowStartIndex * NUM_COLUMNS,
+                    overscanStopIndex:
+                      gridProps.overscanRowStopIndex * NUM_COLUMNS,
+                    visibleStartIndex:
+                      gridProps.visibleRowStartIndex * NUM_COLUMNS,
+                    visibleStopIndex:
+                      gridProps.visibleRowStopIndex * NUM_COLUMNS,
+                  });
+                }}
+              >
+                {Cell}
+              </Grid>
+            )}
+          </InfiniteLoader>
+        );
+      }}
     </AutoSizer>
   );
 };

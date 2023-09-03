@@ -1,6 +1,7 @@
 .beat {
   transform-origin: bottom;
   animation: beat-scale 10s linear infinite;
+  transform: rotateZ(360deg);
 }
 
 @keyframes beat-scale {
