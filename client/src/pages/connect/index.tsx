@@ -4,6 +4,7 @@ import { useIceContext } from "@/components/iceContext";
 import { useNavigate } from "react-router-dom";
 import QrcodeParticle from "@/components/qrcodeParticle";
 import BgImg from "@assets/images/bg.png";
+import LiquidBackground from "@components/liquidBackground";
 
 const Connect: React.FC<{}> = (props) => {
   const { isConnect, isChannelOpen, code1, code2, baseInfo, open } =
@@ -32,8 +33,8 @@ const Connect: React.FC<{}> = (props) => {
         Tinke
       </h1>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-6 center">
-        <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-          <div className="p-4 center">
+        <div className="w-screen max-w-sm flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+          <div className="center">
             {!code1 ? (
               <div className="w-[360px] h-[360px]"></div>
             ) : (
@@ -80,18 +81,7 @@ const Connect: React.FC<{}> = (props) => {
           </div>
         </div>
       </div>
-      <div
-        className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
-        aria-hidden="true"
-      >
-        <div
-          className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        ></div>
-      </div>
+      <LiquidBackground />
     </div>
   );
 };

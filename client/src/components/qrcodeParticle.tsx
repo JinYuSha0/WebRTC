@@ -17,6 +17,7 @@ const QrcodeParticle: React.FC<{ code: string }> = (props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const draw = useEvent(async (code: string) => {
     const particles: Particle[] = [];
+    let renderComplete = false;
 
     const qrcodeCanvas = await QrCode.toCanvas(code, {
       width: 180,
@@ -34,8 +35,8 @@ const QrcodeParticle: React.FC<{ code: string }> = (props) => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
     function render() {
+      if (renderComplete) return;
       requestAnimationFrame(render);
-
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (var i = 0, j = particles.length; i < j; i++) {
         const particle = particles[i];
@@ -66,6 +67,14 @@ const QrcodeParticle: React.FC<{ code: string }> = (props) => {
             y1: particle.y0,
             delay: y / 30,
             ease: Elastic.easeOut,
+            onComplete:
+              particles.length === data.height * data.width - 1
+                ? () => {
+                    setTimeout(() => {
+                      renderComplete = true;
+                    }, 300);
+                  }
+                : undefined,
           })
           .timeScale(6);
         particles.push(particle);

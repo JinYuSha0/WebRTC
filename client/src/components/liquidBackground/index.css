@@ -1,0 +1,16 @@
+.beat {
+  transform-origin: bottom;
+  animation: beat-scale 10s linear infinite;
+}
+
+@keyframes beat-scale {
+  25% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(0.94);
+  }
+}
